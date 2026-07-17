@@ -54,8 +54,33 @@
     "comments": {
       "patterns": [
         {
+          "name": "comment.line.documentation.bsl",
+          "begin": "^(\\s*//)\\s*(Параметры|Возвращаемое значение):",
+          "end": "$",
+          "captures": {
+            "1": { "name": "comment.line.double-slash.bsl" },
+            "2": { "name": "keyword.other.documentation.bsl" }
+          }
+        },
+        {
+          "name": "comment.line.documentation.parameter.bsl",
+          "match": "^(\\s*//)\\s*([a-zA-Zа-яА-ЯёЁ_][a-zA-Zа-яА-ЯёЁ0-9_]*)\\s*-\\s*([a-zA-Zа-яА-ЯёЁ_][a-zA-Zа-яА-ЯёЁ0-9_\\|]*)\\s*-",
+          "captures": {
+            "1": { "name": "comment.line.double-slash.bsl" },
+            "2": { "name": "variable.parameter.documentation.bsl" },
+            "3": { "name": "storage.type.documentation.bsl" }
+          }
+        },
+        {
           "name": "comment.line.double-slash.bsl",
-          "match": "//.*$"
+          "begin": "//",
+          "end": "$",
+          "patterns": [
+            {
+              "name": "keyword.todo.bsl",
+              "match": "(?i)\\b(TODO|FIXME|ВАЖНО|ОШИБКА|ПРИМЕЧАНИЕ|NOTE|WARNING|TEMP)\\b"
+            }
+          ]
         }
       ]
     },
@@ -73,21 +98,53 @@
         },
         {
           "name": "keyword.query.bsl",
-          "match": "(?i)\\b(ВЫБРАТЬ|SELECT|РАЗЛИЧНЫЕ|DISTINCT|ПЕРВЫЕ|TOP|ИЗ|FROM|ГДЕ|WHERE|СОЕДИНЕНИЕ|JOIN|ЛЕВОЕ|LEFT|ПРАВОЕ|RIGHT|ПОЛНОЕ|FULL|ВНУТРЕННЕЕ|INNER|ВНЕШНЕЕ|OUTER|ПЕРЕКРЕСТНОЕ|CROSS|КАК|AS|И|AND|ИЛИ|OR|НЕ|NOT|ПО|ON|УПОРЯДОЧИТЬ|ORDER BY|УПОРЯДОЧИТЬ ПО|СГРУППИРОВАТЬ|GROUP BY|СГРУППИРОВАТЬ ПО|ИМЕЮЩИЕ|HAVING|ОБЪЕДИНИТЬ|UNION|ВСЕ|ALL|В|IN|ПОДОБНО|LIKE|МЕЖДУ|BETWEEN|ЕСТЬ|IS|ССЫЛКА|REFERENCES|ВЫРАЗИТЬ|CAST|ТИПЗНАЧЕНИЯ|VALUETYPE|ЗНАЧЕНИЕ|VALUE|ДАТАВРЕМЯ|DATETIME|ДОБАВИТЬКДАТЕ|DATEADD|РАЗНОСТЬДАТ|DATEDIFF|ГОД|YEAR|КВАРТАЛ|QUARTER|МЕСЯЦ|MONTH|ДЕНЬГОДА|DAYOFYEAR|ДЕНЬ|DAY|НЕДЕЛЯ|WEEK|ДЕНЬНЕДЕЛИ|WEEKDAY|ЧАС|HOUR|МИНУТА|MINUTE|СЕКУНДА|SECOND|ИТОГИ|TOTALS|ПО|BY|ОБЩИЕ|OVERALL|АВТОУПОРЯДОЧИВАНИЕ|AUTOORDER|ИНДЕКСИРОВАТЬ|INDEX BY|NULL|ИСТИНА|ЛОЖЬ|TRUE|FALSE)\\b"
+          "match": "(?i)\\b(ВЫБРАТЬ|SELECT|РАЗРЕШЕННЫЕ|ALLOWED|РАЗЛИЧНЫЕ|DISTINCT|ПЕРВЫЕ|TOP|ИЗ|FROM|ГДЕ|WHERE|СОЕДИНЕНИЕ|JOIN|ЛЕВОЕ|LEFT|ПРАВОЕ|RIGHT|ПОЛНОЕ|FULL|ВНУТРЕННЕЕ|INNER|ВНЕШНЕЕ|OUTER|ПЕРЕКРЕСТНОЕ|CROSS|КАК|AS|И|AND|ИЛИ|OR|НЕ|NOT|ПО|ON|УПОРЯДОЧИТЬ|ORDER BY|УПОРЯДОЧИТЬ ПО|СГРУППИРОВАТЬ|GROUP BY|СГРУППИРОВАТЬ ПО|ИМЕЮЩИЕ|HAVING|ОБЪЕДИНИТЬ|UNION|ВСЕ|ALL|В|IN|ПОДОБНО|LIKE|МЕЖДУ|BETWEEN|ЕСТЬ|IS|ССЫЛКА|REFERENCES|ВЫРАЗИТЬ|CAST|ТИПЗНАЧЕНИЯ|VALUETYPE|ЗНАЧЕНИЕ|VALUE|ДАТАВРЕМЯ|DATETIME|ДОБАВИТЬКДАТЕ|DATEADD|РАЗНОСТЬДАТ|DATEDIFF|ГОД|YEAR|КВАРТАЛ|QUARTER|МЕСЯЦ|MONTH|ДЕНЬГОДА|DAYOFYEAR|ДЕНЬ|DAY|НЕДЕЛЯ|WEEK|ДЕНЬНЕДЕЛИ|WEEKDAY|ЧАС|HOUR|МИНУТА|MINUTE|СЕКУНДА|SECOND|ИТОГИ|TOTALS|ПО|BY|ОБЩИЕ|OVERALL|АВТОУПОРЯДОЧИВАНИЕ|AUTOORDER|ИНДЕКСИРОВАТЬ|INDEX BY|ПОМЕСТИТЬ|INTO|УНИЧТОЖИТЬ|DROP|СПЕЦСИМВОЛ|ESCAPE|NULL|ИСТИНА|ЛОЖЬ|TRUE|FALSE)\\b"
         },
         {
           "name": "support.function.query.bsl",
-          "match": "(?i)\\b(СУММА|SUM|КОЛИЧЕСТВО|COUNT|МАКСИМУМ|MAX|МИНИМУМ|MIN|СРЕДНЕЕ|AVG|КОЛИЧЕСТВОРАЗЛИЧНЫХ|COUNTDISTINCT|ПОДСТРОКА|SUBSTRING|СТРОКА|STRING|ЧИСЛО|NUMBER|ДАТА|DATE|ЕСТЬNULL|ISNULL|ВЫБОР|CASE|КОГДА|WHEN|ТОГДА|THEN|ИНАЧЕ|ELSE|КОНЕЦ|END)\\b"
+          "match": "(?i)\\b(СУММА|SUM|КОЛИЧЕСТВО|COUNT|МАКСИМУМ|MAX|МИНИМУМ|MIN|СРЕДНЕЕ|AVG|КОЛИЧЕСТВОРАЗЛИЧНЫХ|COUNTDISTINCT|ПОДСТРОКА|SUBSTRING|СТРОКА|STRING|ЧИСЛО|NUMBER|ДАТА|DATE|ЕСТЬNULL|ISNULL|ВЫБОР|CASE|КОГДА|WHEN|ТОГДА|THEN|ИНАЧЕ|ELSE|КОНЕЦ|END|ПРЕДСТАВЛЕНИЕ|PRESENTATION|ПРЕДСТАВЛЕНИЕССЫЛКИ|REFERENCEPRESENTATION|ТИП|TYPE)\\b"
         },
         {
           "name": "string.query.table-field.bsl",
           "match": "(?i)\\b[а-яА-ЯёЁa-zA-Z_][а-яА-ЯёЁa-zA-Z0-9_]*\\.[а-яА-ЯёЁa-zA-Z_][а-яА-ЯёЁa-zA-Z0-9_]*\\b"
+        },
+        {
+          "name": "variable.other.parameter.query.bsl",
+          "match": "&[a-zA-Zа-яА-ЯёЁ_][a-zA-Zа-яА-ЯёЁ0-9_]*"
         }
       ]
     },
 
     "strings": {
       "patterns": [
+        {
+          "name": "string.quoted.interpolated.bsl",
+          "begin": "\\$\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.bsl",
+              "match": "\"\""
+            },
+            {
+              "name": "string.quoted.multiline-continuation.bsl",
+              "match": "^\\s*\\|"
+            },
+            {
+              "begin": "\\[",
+              "beginCaptures": {
+                "0": { "name": "punctuation.section.embedded.begin.bsl" }
+              },
+              "end": "\\]",
+              "endCaptures": {
+                "0": { "name": "punctuation.section.embedded.end.bsl" }
+              },
+              "patterns": [
+                { "include": "$self" }
+              ]
+            }
+          ]
+        },
         {
           "name": "string.quoted.double.bsl",
           "begin": "\"",
