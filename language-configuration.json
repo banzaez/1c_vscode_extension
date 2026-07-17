@@ -1,0 +1,21 @@
+{
+  "comments": {
+    "lineComment": "//"
+  },
+  "brackets": [
+    ["[", "]"],
+    ["(", ")"]
+  ],
+  "autoClosingPairs": [
+    { "open": "\"", "close": "\"" },
+    { "open": "[", "close": "]" },
+    { "open": "(", "close": ")" }
+  ],
+  "folding": {
+    "markers": {
+      "start": "^\\s*(#(?:Область|Region)\\b|(?:Процедура|Функция|Procedure|Function)\\s+[a-zA-Zа-яА-ЯёЁ_])",
+      "end": "^\\s*(#(?:КонецОбласти|EndRegion)\\b|(?:КонецПроцедуры|КонецФункции|EndProcedure|EndFunction)\\b)"
+    }
+  },
+  "wordPattern": "[a-zA-Zа-яА-ЯёЁ_][a-zA-Zа-яА-ЯёЁ0-9_]*"
+}

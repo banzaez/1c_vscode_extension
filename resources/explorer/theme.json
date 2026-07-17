@@ -1,0 +1,259 @@
+{
+  "iconDefinitions": {
+    "folder_default": { "iconPath": "./folder.svg" },
+    "folder_default_open": { "iconPath": "./folder-open.svg" },
+    
+    "folder_catalogs": { "iconPath": "../icons/standart/Catalog.png" },
+    "folder_documents": { "iconPath": "../icons/standart/Document.png" },
+    "folder_processors": { "iconPath": "../icons/standart/DataProcessor.png" },
+    "folder_reports": { "iconPath": "../icons/standart/Report.png" },
+    "folder_enums": { "iconPath": "../icons/standart/Enum.png" },
+    "folder_inf_registers": { "iconPath": "../icons/standart/InformationRegister.png" },
+    "folder_acc_registers": { "iconPath": "../icons/standart/AccumulationRegister.png" },
+    "folder_calc_registers": { "iconPath": "../icons/standart/CalculationRegister.png" },
+    "folder_acct_registers": { "iconPath": "../icons/standart/AccountingRegister.png" },
+    "folder_chartsofaccounts": { "iconPath": "../icons/standart/ChartOfAccounts.png" },
+    "folder_chartsofchar": { "iconPath": "../icons/standart/ChartOfCharacteristicTypes.png" },
+    "folder_chartsofcalc": { "iconPath": "../icons/standart/ChartOfCalculationTypes.png" },
+    "folder_businessprocesses": { "iconPath": "../icons/standart/BusinessProcess.png" },
+    "folder_tasks": { "iconPath": "../icons/standart/Task.png" },
+    "folder_constants": { "iconPath": "../icons/standart/Constant.png" },
+    "folder_exchangeplans": { "iconPath": "../icons/standart/ExchangePlan.png" },
+    "folder_filtercriteria": { "iconPath": "../icons/standart/FilterCriterion.png" },
+    "folder_journals": { "iconPath": "../icons/standart/DocumentJournal.png" },
+    "folder_externaldatasources": { "iconPath": "../icons/standart/ExternalDataSource.png" },
+    "folder_scheduledjobs": { "iconPath": "../icons/standart/ScheduledJobs.png" },
+    "folder_subsystems": { "iconPath": "./folder-subsystems.svg" },
+    "folder_forms": { "iconPath": "../icons/standart/Form.png" },
+    "folder_templates": { "iconPath": "../icons/standart/SpreadsheetShowGrid.png" },
+    "folder_commands": { "iconPath": "../icons/standart/FunctionMenuCommand.svg" },
+    "folder_attributes": { "iconPath": "../icons/standart/Attribute.png" },
+    "folder_dimensions": { "iconPath": "../icons/standart/Dimension.png" },
+    "folder_resources": { "iconPath": "../icons/standart/Resource.png" },
+    
+    "folder_commandgroups": { "iconPath": "../icons/standart/CustomizeForm.png" },
+    "folder_commonpictures": { "iconPath": "../icons/standart/Picture.png" },
+    "folder_numerators": { "iconPath": "../icons/standart/FindByNumber.png" },
+    "folder_eventsubscriptions": { "iconPath": "../icons/standart/EventLog.png" },
+    "folder_functionaloptions": { "iconPath": "../icons/standart/DataCompositionOutputParameters.png" },
+    "folder_httpservices": { "iconPath": "./folder-httpservices.svg" },
+    "folder_webservices": { "iconPath": "./folder-webservices.svg" },
+    "folder_languages": { "iconPath": "../icons/standart/FormattedString.png" },
+    "folder_roles": { "iconPath": "../icons/standart/UserWithAuthentication.png" },
+    "folder_sequences": { "iconPath": "../icons/standart/AppearanceRightArrowYellow.png" },
+    "folder_sessionparameters": { "iconPath": "./folder-sessionparameters.svg" },
+    "folder_styles": { "iconPath": "../icons/standart/DataCompositionConditionalAppearance.png" },
+    "folder_xdtopackages": { "iconPath": "../icons/standart/Dendrogram.png" },
+    "folder_ext": { "iconPath": "../icons/standart/OpenFile.png" },
+    
+    "file_default": { "iconPath": "../icons/standart/DocumentObject.png" },
+    "file_bsl": { "iconPath": "../icons/standart/CheckSyntax.png" },
+    "file_mxl": { "iconPath": "../icons/standart/SpreadsheetShowGrid.png" },
+    "file_xml_form": { "iconPath": "../icons/standart/Form.png" },
+    "file_form_data": { "iconPath": "../icons/standart/Parameters.png" }
+  },
+  "folder": "folder_default",
+  "folderExpanded": "folder_default_open",
+  "file": "file_default",
+  "fileExtensions": {
+    "bsl": "file_bsl", // Модули кода BSL
+    "mxl": "file_mxl", // Табличные документы MXL
+    "xml": "file_default" // XML файлы описания
+  },
+  "fileNames": {
+    "form.xml": "file_xml_form", // Описание формы
+    "form.data": "file_form_data" // Файл данных формы
+  },
+  "folderNames": {
+    "accumulationregisters": "folder_acc_registers", // Регистры накопления
+    "accumulationregister": "folder_acc_registers",
+    "accountingregisters": "folder_acct_registers", // Регистры бухгалтерии
+    "accountingregister": "folder_acct_registers",
+    "businessprocesses": "folder_businessprocesses", // Бизнес-процессы
+    "businessprocess": "folder_businessprocesses",
+    "calculationregisters": "folder_calc_registers", // Регистры расчета
+    "calculationregister": "folder_calc_registers",
+    "catalogs": "folder_catalogs", // Справочники
+    "catalog": "folder_catalogs",
+    "chartsofaccounts": "folder_chartsofaccounts", // Планы счетов
+    "chartofaccounts": "folder_chartsofaccounts",
+    "chartsofcalculationtypes": "folder_chartsofcalc", // Планы видов расчета
+    "chartofcalculationtypes": "folder_chartsofcalc",
+    "chartsofcharacteristictypes": "folder_chartsofchar", // Планы видов характеристик
+    "chartofcharacteristictypes": "folder_chartsofchar",
+    "commandgroups": "folder_commandgroups", // Группы команд
+    "commandgroup": "folder_commandgroups",
+    "commonattributes": "folder_attributes", // Общие реквизиты
+    "commonattribute": "folder_attributes",
+    "commoncommands": "folder_commands", // Общие команды
+    "commoncommand": "folder_commands",
+    "commonforms": "folder_forms", // Общие формы
+    "commonform": "folder_forms",
+    "commonmodules": "folder_processors", // Общие модули
+    "commonmodule": "folder_processors",
+    "commonpictures": "folder_commonpictures", // Общие картинки
+    "commonpicture": "folder_commonpictures",
+    "commontemplates": "folder_templates", // Общие макеты
+    "commontemplate": "folder_templates",
+    "constants": "folder_constants", // Константы
+    "constant": "folder_constants",
+    "dataprocessors": "folder_processors", // Обработки
+    "dataprocessor": "folder_processors",
+    "documentjournals": "folder_journals", // Журналы документов
+    "documentjournal": "folder_journals",
+    "documentnumerators": "folder_numerators", // Нумераторы документов
+    "documentnumerator": "folder_numerators",
+    "documents": "folder_documents", // Документы
+    "document": "folder_documents",
+    "enums": "folder_enums", // Перечисления
+    "enum": "folder_enums",
+    "eventsubscriptions": "folder_eventsubscriptions", // Подписки на события
+    "eventsubscription": "folder_eventsubscriptions",
+    "exchangeplans": "folder_exchangeplans", // Планы обмена
+    "exchangeplan": "folder_exchangeplans",
+    "externaldatasources": "folder_externaldatasources", // Внешние источники данных
+    "externaldatasource": "folder_externaldatasources",
+    "filtercriteria": "folder_filtercriteria", // Критерии отбора
+    "filtercriterion": "folder_filtercriteria",
+    "functionaloptions": "folder_functionaloptions", // Функциональные опции
+    "functionaloption": "folder_functionaloptions",
+    "httpservices": "folder_httpservices", // HTTP-сервисы
+    "httpservice": "folder_httpservices",
+    "informationregisters": "folder_inf_registers", // Регистры сведений
+    "informationregister": "folder_inf_registers",
+    "interfaces": "folder_commandgroups", // Интерфейсы
+    "interface": "folder_commandgroups",
+    "languages": "folder_languages", // Языки
+    "language": "folder_languages",
+    "reports": "folder_reports", // Отчеты
+    "report": "folder_reports",
+    "roles": "folder_roles", // Роли
+    "role": "folder_roles",
+    "scheduledjobs": "folder_scheduledjobs", // Регламентные задания
+    "scheduledjob": "folder_scheduledjobs",
+    "sequences": "folder_sequences", // Последовательности
+    "sequence": "folder_sequences",
+    "sessionparameters": "folder_sessionparameters", // Параметры сеанса
+    "sessionparameter": "folder_sessionparameters",
+    "styleitems": "folder_styles", // Элементы стиля
+    "styleitem": "folder_styles",
+    "styles": "folder_styles", // Стили
+    "style": "folder_styles",
+    "subsystems": "folder_subsystems", // Subsystems / Подсистемы
+    "subsystem": "folder_subsystems",
+    "webservices": "folder_webservices", // Web-сервисы
+    "webservice": "folder_webservices",
+    "xdtopackages": "folder_xdtopackages", // XDTO-пакеты
+    "xdtopackage": "folder_xdtopackages",
+    
+    "forms": "folder_forms", // Формы
+    "form": "folder_forms",
+    "templates": "folder_templates", // Макеты
+    "template": "folder_templates",
+    "commands": "folder_commands", // Команды
+    "command": "folder_commands",
+    "attributes": "folder_attributes", // Реквизиты
+    "attribute": "folder_attributes",
+    "dimensions": "folder_dimensions", // Измерения
+    "dimension": "folder_dimensions",
+    "resources": "folder_resources", // Ресурсы
+    "resource": "folder_resources",
+    "ext": "folder_ext" // Внешние файлы (Ext)
+  },
+  "folderNamesExpanded": {
+    "accumulationregisters": "folder_acc_registers", // Регистры накопления
+    "accumulationregister": "folder_acc_registers",
+    "accountingregisters": "folder_acct_registers", // Регистры бухгалтерии
+    "accountingregister": "folder_acct_registers",
+    "businessprocesses": "folder_businessprocesses", // Бизнес-процессы
+    "businessprocess": "folder_businessprocesses",
+    "calculationregisters": "folder_calc_registers", // Регистры расчета
+    "calculationregister": "folder_calc_registers",
+    "catalogs": "folder_catalogs", // Справочники
+    "catalog": "folder_catalogs",
+    "chartsofaccounts": "folder_chartsofaccounts", // Планы счетов
+    "chartofaccounts": "folder_chartsofaccounts",
+    "chartsofcalculationtypes": "folder_chartsofcalc", // Планы видов расчета
+    "chartofcalculationtypes": "folder_chartsofcalc",
+    "chartsofcharacteristictypes": "folder_chartsofchar", // Планы видов характеристик
+    "chartofcharacteristictypes": "folder_chartsofchar",
+    "commandgroups": "folder_commandgroups", // Группы команд
+    "commandgroup": "folder_commandgroups",
+    "commonattributes": "folder_attributes", // Общие реквизиты
+    "commonattribute": "folder_attributes",
+    "commoncommands": "folder_commands", // Общие команды
+    "commoncommand": "folder_commands",
+    "commonforms": "folder_forms", // Общие формы
+    "commonform": "folder_forms",
+    "commonmodules": "folder_processors", // Общие модули
+    "commonmodule": "folder_processors",
+    "commonpictures": "folder_commonpictures", // Общие картинки
+    "commonpicture": "folder_commonpictures",
+    "commontemplates": "folder_templates", // Общие макеты
+    "commontemplate": "folder_templates",
+    "constants": "folder_constants", // Константы
+    "constant": "folder_constants",
+    "dataprocessors": "folder_processors", // Обработки
+    "dataprocessor": "folder_processors",
+    "documentjournals": "folder_journals", // Журналы документов
+    "documentjournal": "folder_journals",
+    "documentnumerators": "folder_numerators", // Нумераторы документов
+    "documentnumerator": "folder_numerators",
+    "documents": "folder_documents", // Документы
+    "document": "folder_documents",
+    "enums": "folder_enums", // Перечисления
+    "enum": "folder_enums",
+    "eventsubscriptions": "folder_eventsubscriptions", // Подписки на события
+    "eventsubscription": "folder_eventsubscriptions",
+    "exchangeplans": "folder_exchangeplans", // Планы обмена
+    "exchangeplan": "folder_exchangeplans",
+    "externaldatasources": "folder_externaldatasources", // Внешние источники данных
+    "externaldatasource": "folder_externaldatasources",
+    "filtercriteria": "folder_filtercriteria", // Критерии отбора
+    "filtercriterion": "folder_filtercriteria",
+    "functionaloptions": "folder_functionaloptions", // Функциональные опции
+    "functionaloption": "folder_functionaloptions",
+    "httpservices": "folder_httpservices", // HTTP-сервисы
+    "httpservice": "folder_httpservices",
+    "informationregisters": "folder_inf_registers", // Регистры сведений
+    "informationregister": "folder_inf_registers",
+    "interfaces": "folder_commandgroups", // Интерфейсы
+    "interface": "folder_commandgroups",
+    "languages": "folder_languages", // Языки
+    "language": "folder_languages",
+    "reports": "folder_reports", // Отчеты
+    "report": "folder_reports",
+    "roles": "folder_roles", // Роли
+    "role": "folder_roles",
+    "scheduledjobs": "folder_scheduledjobs", // Регламентные задания
+    "scheduledjob": "folder_scheduledjobs",
+    "sequences": "folder_sequences", // Последовательности
+    "sequence": "folder_sequences",
+    "sessionparameters": "folder_sessionparameters", // Параметры сеанса
+    "sessionparameter": "folder_sessionparameters",
+    "styleitems": "folder_styles", // Элементы стиля
+    "styleitem": "folder_styles",
+    "styles": "folder_styles", // Стили
+    "style": "folder_styles",
+    "subsystems": "folder_subsystems", // Subsystems / Подсистемы
+    "subsystem": "folder_subsystems",
+    "webservices": "folder_webservices", // Web-сервисы
+    "webservice": "folder_webservices",
+    "xdtopackages": "folder_xdtopackages", // XDTO-пакеты
+    "xdtopackage": "folder_xdtopackages",
+    
+    "forms": "folder_forms", // Формы
+    "form": "folder_forms",
+    "templates": "folder_templates", // Макеты
+    "template": "folder_templates",
+    "commands": "folder_commands", // Команды
+    "command": "folder_commands",
+    "attributes": "folder_attributes", // Реквизиты
+    "attribute": "folder_attributes",
+    "dimensions": "folder_dimensions", // Измерения
+    "dimension": "folder_dimensions",
+    "resources": "folder_resources", // Ресурсы
+    "resource": "folder_resources",
+    "ext": "folder_ext" // Внешние файлы (Ext)
+  }
+}

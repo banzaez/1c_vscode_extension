@@ -1,0 +1,9 @@
+.git
+.vscode
+1CForms
+1CForms.zip
+*.vsix
+node_modules
+scripts
+package-lock.json
+bump-and-build.sh

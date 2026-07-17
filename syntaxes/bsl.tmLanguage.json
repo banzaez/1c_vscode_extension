@@ -1,0 +1,286 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "1C Enterprise (BSL)",
+  "patterns": [
+    { "include": "#preprocessor" },
+    { "include": "#compiler-directives" },
+    { "include": "#comments" },
+    { "include": "#query-string" },
+    { "include": "#strings" },
+    { "include": "#function-declaration" },
+    { "include": "#end-keywords" },
+    { "include": "#keywords" },
+    { "include": "#variable-declaration" },
+    { "include": "#language-variables" },
+    { "include": "#builtin-types" },
+    { "include": "#builtin-functions" },
+    { "include": "#constants" },
+    { "include": "#numbers" },
+    { "include": "#operators" },
+    { "include": "#property-access" },
+    { "include": "#function-call" }
+  ],
+  "repository": {
+
+    "preprocessor": {
+      "patterns": [
+        {
+          "name": "meta.preprocessor.bsl",
+          "match": "(?i)^\\s*(#если|#тогда|#иначе|#конецесли|#if|#then|#else|#endif)\\b",
+          "captures": {
+            "1": { "name": "keyword.control.preprocessor.bsl" }
+          }
+        },
+        {
+          "name": "meta.region.bsl",
+          "match": "(?i)^\\s*(#область|#конецобласти|#region|#endregion)\\s*(.*)?$",
+          "captures": {
+            "1": { "name": "keyword.other.region.bsl" },
+            "2": { "name": "entity.name.section.bsl" }
+          }
+        }
+      ]
+    },
+
+    "compiler-directives": {
+      "patterns": [
+        {
+          "name": "storage.modifier.compiler-directive.bsl",
+          "match": "&(?:НаКлиентеНаСервере|НаКлиентеНаСервереБезКонтекста|НаСервереБезКонтекста|НаКлиенте|НаСервере|AtClientAtServer|AtClientAtServerNoContext|AtServerNoContext|AtClient|AtServer|Аннотация|Annotation|ИспользоватьСтандартныеКоманды|UseStandardCommands)\\b"
+        }
+      ]
+    },
+
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.bsl",
+          "match": "//.*$"
+        }
+      ]
+    },
+
+    "query-string": {
+      "comment": "Строки-запросы 1С — начинаются с ключевых слов ВЫБРАТЬ/SELECT",
+      "begin": "(?i)\"(?=\\s*(?:ВЫБРАТЬ|SELECT|ВЫБРАТЬ\\s+РАЗЛИЧНЫЕ|ВЫБРАТЬ\\s+ПЕРВЫЕ))",
+      "end": "\"",
+      "name": "string.quoted.query.bsl",
+      "contentName": "meta.embedded.query.bsl",
+      "patterns": [
+        {
+          "name": "string.query.pipe-continuation.bsl",
+          "match": "^\\s*\\|"
+        },
+        {
+          "name": "keyword.query.bsl",
+          "match": "(?i)\\b(ВЫБРАТЬ|SELECT|РАЗЛИЧНЫЕ|DISTINCT|ПЕРВЫЕ|TOP|ИЗ|FROM|ГДЕ|WHERE|СОЕДИНЕНИЕ|JOIN|ЛЕВОЕ|LEFT|ПРАВОЕ|RIGHT|ПОЛНОЕ|FULL|ВНУТРЕННЕЕ|INNER|ВНЕШНЕЕ|OUTER|ПЕРЕКРЕСТНОЕ|CROSS|КАК|AS|И|AND|ИЛИ|OR|НЕ|NOT|ПО|ON|УПОРЯДОЧИТЬ|ORDER BY|УПОРЯДОЧИТЬ ПО|СГРУППИРОВАТЬ|GROUP BY|СГРУППИРОВАТЬ ПО|ИМЕЮЩИЕ|HAVING|ОБЪЕДИНИТЬ|UNION|ВСЕ|ALL|В|IN|ПОДОБНО|LIKE|МЕЖДУ|BETWEEN|ЕСТЬ|IS|ССЫЛКА|REFERENCES|ВЫРАЗИТЬ|CAST|ТИПЗНАЧЕНИЯ|VALUETYPE|ЗНАЧЕНИЕ|VALUE|ДАТАВРЕМЯ|DATETIME|ДОБАВИТЬКДАТЕ|DATEADD|РАЗНОСТЬДАТ|DATEDIFF|ГОД|YEAR|КВАРТАЛ|QUARTER|МЕСЯЦ|MONTH|ДЕНЬГОДА|DAYOFYEAR|ДЕНЬ|DAY|НЕДЕЛЯ|WEEK|ДЕНЬНЕДЕЛИ|WEEKDAY|ЧАС|HOUR|МИНУТА|MINUTE|СЕКУНДА|SECOND|ИТОГИ|TOTALS|ПО|BY|ОБЩИЕ|OVERALL|АВТОУПОРЯДОЧИВАНИЕ|AUTOORDER|ИНДЕКСИРОВАТЬ|INDEX BY|NULL|ИСТИНА|ЛОЖЬ|TRUE|FALSE)\\b"
+        },
+        {
+          "name": "support.function.query.bsl",
+          "match": "(?i)\\b(СУММА|SUM|КОЛИЧЕСТВО|COUNT|МАКСИМУМ|MAX|МИНИМУМ|MIN|СРЕДНЕЕ|AVG|КОЛИЧЕСТВОРАЗЛИЧНЫХ|COUNTDISTINCT|ПОДСТРОКА|SUBSTRING|СТРОКА|STRING|ЧИСЛО|NUMBER|ДАТА|DATE|ЕСТЬNULL|ISNULL|ВЫБОР|CASE|КОГДА|WHEN|ТОГДА|THEN|ИНАЧЕ|ELSE|КОНЕЦ|END)\\b"
+        },
+        {
+          "name": "string.query.table-field.bsl",
+          "match": "(?i)\\b[а-яА-ЯёЁa-zA-Z_][а-яА-ЯёЁa-zA-Z0-9_]*\\.[а-яА-ЯёЁa-zA-Z_][а-яА-ЯёЁa-zA-Z0-9_]*\\b"
+        }
+      ]
+    },
+
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.bsl",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.bsl",
+              "match": "\"\""
+            },
+            {
+              "name": "string.quoted.multiline-continuation.bsl",
+              "match": "^\\s*\\|"
+            }
+          ]
+        }
+      ]
+    },
+
+    "function-declaration": {
+      "patterns": [
+        {
+          "name": "meta.function.declaration.bsl",
+          "begin": "(?i)\\b(Процедура|Функция|Procedure|Function)\\s+([a-zA-Zа-яА-ЯёЁ_][a-zA-Zа-яА-ЯёЁ0-9_]*)",
+          "beginCaptures": {
+            "1": { "name": "keyword.declaration.function.bsl" },
+            "2": { "name": "entity.name.function.bsl" }
+          },
+          "end": "$",
+          "patterns": [
+            {
+              "begin": "\\(",
+              "beginCaptures": { "0": { "name": "punctuation.definition.parameters.begin.bsl" } },
+              "end": "\\)",
+              "endCaptures": { "0": { "name": "punctuation.definition.parameters.end.bsl" } },
+              "patterns": [
+                {
+                  "name": "keyword.declaration.parameter-modifier.bsl",
+                  "match": "(?i)\\b(Знач|Val)\\b"
+                },
+                {
+                  "name": "variable.parameter.bsl",
+                  "match": "[a-zA-Zа-яА-ЯёЁ_][a-zA-Zа-яА-ЯёЁ0-9_]*"
+                },
+                {
+                  "name": "punctuation.separator.parameter.bsl",
+                  "match": ","
+                }
+              ]
+            },
+            {
+              "name": "keyword.modifier.export.bsl",
+              "match": "(?i)\\b(Экспорт|Export)\\b"
+            }
+          ]
+        }
+      ]
+    },
+
+    "end-keywords": {
+      "patterns": [
+        {
+          "name": "keyword.declaration.end.bsl",
+          "match": "(?i)\\b(КонецПроцедуры|КонецФункции|КонецЕсли|КонецЦикла|КонецПопытки|КонецОбъекта|EndProcedure|EndFunction|EndIf|EndDo|EndTry|EndObject)\\b"
+        }
+      ]
+    },
+
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.bsl",
+          "match": "(?i)\\b(Если|Тогда|ИначеЕсли|Иначе|Для|Каждого|Из|По|Цикл|Пока|Попытка|Исключение|ВызватьИсключение|Возврат|Продолжить|Прервать|Экспорт|Перейти|И|Или|Не|If|Then|ElsIf|Else|For|Each|In|To|Do|While|Try|Except|Raise|Return|Continue|Break|Export|Goto|And|Or|Not)\\b"
+        },
+        {
+          "name": "keyword.other.bsl",
+          "match": "(?i)\\b(Новый|New|НЕТ)\\b"
+        }
+      ]
+    },
+
+    "language-variables": {
+      "comment": "Встроенные переменные управляемой формы 1С",
+      "patterns": [
+        {
+          "name": "variable.language.bsl",
+          "match": "(?i)\\b(Объект|Элементы|Команды|Реквизиты|ЭтотОбъект|ЭтаФорма|ПараметрыФормы|МодифицированностьОкна|Object|Items|Commands|Attributes|ThisObject|ThisForm|FormParameters|WindowModified)\\b"
+        }
+      ]
+    },
+
+    "variable-declaration": {
+      "patterns": [
+        {
+          "name": "meta.variable.declaration.bsl",
+          "begin": "(?i)\\b(Перем|Var)\\b",
+          "beginCaptures": {
+            "1": { "name": "keyword.declaration.variable.bsl" }
+          },
+          "end": ";|$",
+          "patterns": [
+            {
+              "name": "variable.other.declared.bsl",
+              "match": "[a-zA-Zа-яА-ЯёЁ_][a-zA-Zа-яА-ЯёЁ0-9_]*"
+            },
+            {
+              "name": "keyword.modifier.export.bsl",
+              "match": "(?i)\\b(Экспорт|Export)\\b"
+            }
+          ]
+        }
+      ]
+    },
+
+    "builtin-types": {
+      "patterns": [
+        {
+          "name": "support.class.bsl",
+          "match": "(?i)(?<=Новый\\s)([a-zA-Zа-яА-ЯёЁ_][a-zA-Zа-яА-ЯёЁ0-9_]*)"
+        },
+        {
+          "name": "support.class.standalone.bsl",
+          "match": "(?i)\\b(Строка|Число|Булево|Дата|Массив|Структура|ТаблицаЗначений|СписокЗначений|Соответствие|ФиксированнаяСтруктура|ФиксированноеСоответствие|ФиксированныйМассив|ХранилищеЗначения|ТипЗначения|Запрос|РезультатЗапроса|ВыборкаИзРезультатаЗапроса|ОбщийМодуль|Менеджер|Объект|String|Number|Boolean|Date|Array|Structure|ValueTable|ValueList|Map|FixedStructure|FixedMap|FixedArray|ValueStorage|Type|TypeDescription|Query|QueryResult|QueryResultSelection)\\b"
+        }
+      ]
+    },
+
+    "builtin-functions": {
+      "patterns": [
+        {
+          "name": "support.function.bsl",
+          "match": "(?i)\\b(Сообщить|Предупреждение|Вопрос|ОткрытьФорму|ЗакрытьФорму|ТипЗнч|ЗначениеВСтрокуXML|СтрокаXMLВЗначение|XMLСтрока|XMLЗначение|НСтр|Формат|СтрДлина|Лев|Прав|Сред|ВРег|НРег|ТРег|СтрЗаменить|СтрНайти|СтрЧислоВхождений|СтрРазделить|СтрСоединить|ПустаяСтрока|СокрЛП|СокрЛ|СокрП|Симв|КодСимвола|Окр|Цел|Мин|Макс|Abs|НачалоМесяца|КонецМесяца|НачалоГода|КонецГода|НачалоКвартала|КонецКвартала|НачалоНедели|КонецНедели|НачалоДня|КонецДня|ДобавитьМесяц|ДеньГода|ДеньНедели|НеделяГода|РабочаяДата|ТекущаяДата|ЗначениеЗаполнено|ОписаниеОшибки|ИнформацияОбОшибке|Message|Alert|Question|OpenForm|CloseForm|TypeOf|NStr|Format|StrLen|Left|Right|Mid|Upper|Lower|Title|StrReplace|StrFind|StrOccurrenceCount|StrSplit|StrConcat|EmptyString|TrimAll|TrimL|TrimR|Char|CharCode|Round|Int|Min|Max)\\b(?=\\s*\\()"
+        }
+      ]
+    },
+
+    "constants": {
+      "patterns": [
+        {
+          "name": "constant.language.bsl",
+          "match": "(?i)\\b(Истина|Ложь|Неопределено|Null|True|False|Undefined)\\b"
+        }
+      ]
+    },
+
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.bsl",
+          "match": "(?<![.а-яА-ЯёЁa-zA-Z_])-?\\b\\d+(\\.\\d+)?\\b"
+        }
+      ]
+    },
+
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.comparison.bsl",
+          "match": "<>|<=|>=|<|>|="
+        },
+        {
+          "name": "keyword.operator.arithmetic.bsl",
+          "match": "[+\\-*/%]"
+        }
+      ]
+    },
+
+    "property-access": {
+      "patterns": [
+        {
+          "match": "\\.([a-zA-Zа-яА-ЯёЁ_][a-zA-Zа-яА-ЯёЁ0-9_]*)\\s*(?=\\()",
+          "captures": {
+            "1": { "name": "entity.name.function.method.bsl" }
+          }
+        },
+        {
+          "match": "\\.([a-zA-Zа-яА-ЯёЁ_][a-zA-Zа-яА-ЯёЁ0-9_]*)\\b",
+          "captures": {
+            "1": { "name": "variable.other.property.bsl" }
+          }
+        }
+      ]
+    },
+
+    "function-call": {
+      "patterns": [
+        {
+          "match": "\\b([a-zA-Zа-яА-ЯёЁ_][a-zA-Zа-яА-ЯёЁ0-9_]*)\\s*(?=\\()",
+          "captures": {
+            "1": { "name": "entity.name.function.call.bsl" }
+          }
+        }
+      ]
+    }
+  },
+  "scopeName": "source.bsl"
+}

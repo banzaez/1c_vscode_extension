@@ -1,0 +1,18 @@
+# Dependency directories
+node_modules/
+
+# Build outputs
+out/
+dist/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# VS Code test and temp files
+.vscode-test/
+*.vsix
+
+# Project specific
+1CForms/
+1CForms.zip

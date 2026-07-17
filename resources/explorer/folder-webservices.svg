@@ -1,0 +1,10 @@
+<!-- Web-сервисы: синий глобус с зеленой вилкой подключения, стиль 1С -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <circle cx="8" cy="8" r="6" fill="#FFF" stroke="#1E88E5" stroke-width="1.2"/>
+  <ellipse cx="8" cy="8" rx="2.5" ry="6" fill="none" stroke="#64B5F6" stroke-width="0.8"/>
+  <line x1="2" y1="8" x2="14" y2="8" stroke="#64B5F6" stroke-width="0.8"/>
+  <ellipse cx="8" cy="8" rx="6" ry="2.5" fill="none" stroke="#64B5F6" stroke-width="0.8"/>
+  <rect x="10" y="10" width="4" height="4" rx="0.5" fill="#4CAF50" stroke="#388E3C" stroke-width="0.5"/>
+  <line x1="11.2" y1="14" x2="11.2" y2="15" stroke="#388E3C" stroke-width="0.8"/>
+  <line x1="12.8" y1="14" x2="12.8" y2="15" stroke="#388E3C" stroke-width="0.8"/>
+</svg>

@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <title>Табличный макет MXL 1С</title>
+  <style>
+    :root {
+      --1c-font: Arial, "Segoe UI", Tahoma, sans-serif;
+      --bd: #b7bcc4;
+      --grid-line: #d2d2d2;
+      --hdr-bg: #e9ebf0;
+      --hdr-text: #555555;
+      --page-bg: #d7dce2;
+      --sheet-bg: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: var(--page-bg);
+      color-scheme: light;
+    }
+
+    body {
+      font-family: var(--1c-font);
+      font-size: 12px;
+      color: #222;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .app-root {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      flex: 1;
+      min-height: 0;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .app-root #stage {
+      flex: 1;
+      min-width: 0;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: var(--page-bg);
+    }
+
+    .app-root.props-visible #stage {
+      flex: 1;
+    }
+
+    .mxl-props-panel {
+      flex: 0 0 300px;
+      width: 300px;
+      min-height: 0;
+      background: #f8f9fb;
+      border: 1px solid var(--bd);
+      border-left: 2px solid #989ea8;
+      box-shadow: -4px 0 12px rgba(0, 0, 0, .08);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      font-size: 11px;
+    }
+
+    .mxl-props-panel.hidden {
+      display: none;
+    }
+
+    .mxl-props-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 10px;
+      background: linear-gradient(180deg, #fdfdfe, #eef0f3);
+      border-bottom: 1px solid var(--bd);
+      font-weight: 600;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    .mxl-props-close {
+      border: none;
+      background: transparent;
+      font-size: 18px;
+      line-height: 1;
+      color: #666;
+      cursor: pointer;
+      padding: 0 4px;
+    }
+
+    .mxl-props-close:hover {
+      color: #222;
+    }
+
+    .mxl-props-body {
+      flex: 1;
+      overflow: auto;
+      padding: 6px 0 12px;
+    }
+
+    .mxl-props-section {
+      padding: 0 10px 8px;
+      border-bottom: 1px solid #e4e7ec;
+      margin-bottom: 8px;
+    }
+
+    .mxl-props-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    .mxl-props-title {
+      font-weight: 600;
+      color: #2f78c4;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin: 6px 0 4px;
+    }
+
+    .mxl-props-list {
+      margin: 0;
+      display: grid;
+      grid-template-columns: minmax(90px, 42%) 1fr;
+      gap: 2px 8px;
+    }
+
+    .mxl-props-list dt {
+      margin: 0;
+      color: #666;
+      font-weight: normal;
+    }
+
+    .mxl-props-list dd {
+      margin: 0;
+      color: #222;
+      word-break: break-word;
+    }
+
+    .mxl-props-list dd:empty::after {
+      content: '—';
+      color: #aaa;
+    }
+
+    .err {
+      background: #fdecec;
+      border: 1px solid #e8a3a3;
+      color: #9b1c1c;
+      padding: 24px;
+      border-radius: 6px;
+      margin: 40px auto;
+      max-width: 520px;
+      white-space: pre-wrap;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    body.has-error {
+      background: #eaeaea !important;
+    }
+
+    .mxl-window {
+      flex: 1;
+      min-height: 0;
+      width: 100%;
+      background: #fff;
+      border: 2px solid #2f78c4;
+      border-radius: 2px;
+      box-shadow: 0 6px 22px rgba(0, 0, 0, .25);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .titlebar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(180deg, #fdfdfe, #eef0f3);
+      border-bottom: 1px solid var(--bd);
+      padding: 5px 10px;
+      font-size: 13px;
+      color: #2b2b2b;
+      flex-shrink: 0;
+    }
+
+    .titlebar .tb-nav,
+    .titlebar .tb-ico {
+      color: #5a6470;
+      font-size: 14px;
+      cursor: default;
+      width: 18px;
+      text-align: center;
+    }
+
+    .titlebar .tb-star {
+      color: #e0a93b;
+    }
+
+    .titlebar .tb-title {
+      font-weight: 600;
+    }
+
+    .titlebar .tb-spacer {
+      flex: 1;
+    }
+
+    .mxl-body {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      position: relative;
+      background: var(--sheet-bg);
+      overscroll-behavior: contain;
+      isolation: isolate;
+    }
+
+    .mxl-scroll-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: var(--sheet-bg);
+      width: max(100%, var(--sheet-w, 100%));
+      height: max(100%, var(--sheet-h, 100%));
+      min-width: 100%;
+      min-height: 100%;
+    }
+
+    .mxl-sheet {
+      display: block;
+      position: relative;
+      z-index: 1;
+      background: var(--sheet-bg);
+    }
+
+    .mxl-sheet-grid {
+      display: grid;
+      width: 100%;
+      background: var(--sheet-bg);
+    }
+
+    .mxl-sheet-grid .mxl-named-area-hdr {
+      position: sticky;
+      top: 0;
+      left: 0;
+      z-index: 14;
+      align-self: stretch;
+    }
+
+    .mxl-sheet-grid .mxl-grid-head {
+      position: sticky;
+      top: 0;
+      z-index: 12;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .mxl-sheet-grid .mxl-named-area-block {
+      align-self: stretch;
+      min-height: 0;
+      height: 100%;
+    }
+
+    .mxl-sheet-grid .mxl-area-spacer {
+      min-height: 0;
+    }
+
+    .mxl-sheet-grid .mxl-data-row {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      min-width: 0;
+      min-height: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .mxl-drawing-overlay {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      z-index: 5;
+      overflow: visible;
+    }
+
+    .mxl-drawing-picture {
+      position: absolute;
+      display: block;
+      pointer-events: none;
+      user-select: none;
+      min-width: 1px;
+      min-height: 1px;
+    }
+
+    .mxl-named-area-block {
+      background: #fdf6e2;
+      color: #b05a00;
+      border-left: 3px solid #b05a00;
+      border-right: 1px solid var(--bd);
+      border-top: 1px dashed var(--bd);
+      border-bottom: 1px dashed var(--bd);
+      font-size: 9px;
+      font-weight: bold;
+      text-align: left;
+      padding: 2px 4px 2px 6px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      box-sizing: border-box;
+    }
+
+    .mxl-area-column .mxl-named-area-hdr {
+      position: sticky;
+      top: 0;
+      z-index: 14;
+    }
+
+    .mxl-named-area-gutter,
+    .mxl-named-area-gutter-hdr {
+      flex: 0 0 90px;
+      width: 90px;
+      flex-shrink: 0;
+      position: sticky;
+      left: 0;
+      z-index: 11;
+      background: var(--sheet-bg);
+    }
+
+    .mxl-named-area-gutter-hdr {
+      height: 20px;
+      min-height: 20px;
+    }
+
+    .mxl-colhdr-section .mxl-named-area-gutter-hdr {
+      visibility: hidden;
+    }
+
+    .mxl-head-row,
+    .mxl-data-row {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      background: var(--sheet-bg);
+      flex-shrink: 0;
+    }
+
+    /* Строки без rowsItem в XML — нулевая высота, как в конфигураторе 1С */
+    .mxl-row-absent {
+      height: 0 !important;
+      min-height: 0 !important;
+      overflow: hidden;
+      border: none;
+    }
+
+    .mxl-row-absent .mxl-row-hdr,
+    .mxl-row-absent .mxl-row-cells,
+    .mxl-row-absent .mxl-named-area-gutter {
+      visibility: hidden;
+    }
+
+    .mxl-head-row {
+      position: sticky;
+      top: 0;
+      z-index: 12;
+      background: var(--sheet-bg);
+    }
+
+    /* Линейки колонок дополнительных таблиц скрыты, пока не кликнут по ячейке */
+    .mxl-section-hdr {
+      display: none;
+      position: static;
+    }
+
+    .mxl-section-hdr.mxl-section-visible {
+      display: flex;
+    }
+
+    /* Подсветка выбранной ячейки */
+    table.mxl-sheet-table td.mxl-cell-active,
+    table.mxl-row-table td.mxl-cell-active {
+      outline: 2px solid #2f78c4;
+      outline-offset: -2px;
+    }
+
+    table.mxl-sheet-table {
+      border-collapse: collapse;
+      table-layout: fixed;
+      background: var(--sheet-bg);
+      border-spacing: 0;
+    }
+
+    table.mxl-sheet-table thead {
+      position: sticky;
+      top: 0;
+      z-index: 12;
+    }
+
+    table.mxl-sheet-table th,
+    table.mxl-sheet-table td {
+      border: 1px solid var(--grid-line);
+      padding: 1px 3px;
+      box-sizing: border-box;
+      background: var(--sheet-bg);
+    }
+
+    table.mxl-sheet-table th.mxl-named-area-hdr,
+    table.mxl-sheet-table th.mxl-corner-hdr,
+    table.mxl-sheet-table th.mxl-col-hdr {
+      background: var(--hdr-bg);
+      color: #444;
+      border-color: #c2c7d0;
+      font-size: 10px;
+      text-align: center;
+      font-weight: normal;
+      height: 20px;
+      line-height: 18px;
+      vertical-align: middle;
+    }
+
+    table.mxl-sheet-table th.mxl-named-area-hdr,
+    table.mxl-sheet-table td.mxl-named-area-cell {
+      position: sticky;
+      left: 0;
+      z-index: 11;
+      width: 90px;
+      min-width: 90px;
+      max-width: 90px;
+    }
+
+    table.mxl-sheet-table.has-groups th.mxl-corner-hdr,
+    table.mxl-sheet-table.has-groups td.mxl-row-hdr,
+    .mxl-sheet.has-groups table.mxl-sheet-table th.mxl-corner-hdr,
+    .mxl-sheet.has-groups table.mxl-sheet-table td.mxl-row-hdr {
+      position: sticky;
+      left: 90px;
+      z-index: 10;
+    }
+
+    .mxl-sheet.no-groups table.mxl-sheet-table th.mxl-corner-hdr,
+    .mxl-sheet.no-groups table.mxl-sheet-table td.mxl-row-hdr {
+      position: sticky;
+      left: 0;
+      z-index: 10;
+    }
+
+    table.mxl-sheet-table td.mxl-row-hdr {
+      background: var(--hdr-bg);
+      color: #444;
+      font-size: 10px;
+      text-align: center;
+      vertical-align: middle;
+      width: 40px;
+      min-width: 40px;
+      max-width: 40px;
+      cursor: default;
+    }
+
+    table.mxl-sheet-table td.mxl-named-area-cell {
+      background: #fdf6e2;
+      color: #b05a00;
+      border-left: 3px solid #b05a00;
+      font-size: 9px;
+      font-weight: bold;
+      text-align: left;
+      vertical-align: middle;
+      padding: 2px 4px 2px 6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    table.mxl-sheet-table td.mxl-named-area-empty {
+      background: var(--sheet-bg);
+      border-left: 1px solid var(--grid-line);
+      padding: 0;
+    }
+
+    table.mxl-sheet-table td.mxl-data-cell {
+      vertical-align: bottom;
+      white-space: nowrap;
+      overflow: hidden;
+      font-size: 11px;
+      line-height: 1.15;
+      cursor: cell;
+    }
+
+    table.mxl-sheet-table td.mxl-data-cell[style*="white-space:normal"] {
+      word-break: break-word;
+    }
+
+    table.mxl-sheet-table td.mxl-cell-empty {
+      padding: 0;
+      border-color: var(--grid-line);
+    }
+
+    table.mxl-sheet-table tr.mxl-row-absent {
+      height: 0 !important;
+      line-height: 0;
+    }
+
+    table.mxl-sheet-table tr.mxl-row-absent td {
+      height: 0 !important;
+      min-height: 0 !important;
+      padding: 0;
+      border: none;
+      overflow: hidden;
+      visibility: hidden;
+    }
+
+    .mxl-colhdr-section .mxl-corner-hdr {
+      border-bottom-width: 1px;
+    }
+
+    .mxl-named-area-hdr {
+      flex: 0 0 90px;
+      width: 90px;
+      box-sizing: border-box;
+      position: sticky;
+      left: 0;
+      z-index: 21;
+      background: var(--hdr-bg);
+      color: #444;
+      border: 1px solid #c2c7d0;
+      border-right: 2px solid #989ea8;
+      border-bottom: 2px solid #989ea8;
+      font-size: 10px;
+      text-align: center;
+      font-weight: normal;
+      height: 20px;
+      line-height: 18px;
+    }
+
+    .mxl-corner-hdr,
+    .mxl-row-hdr {
+      flex: 0 0 40px;
+      width: 40px;
+      flex-shrink: 0;
+      background: var(--hdr-bg);
+      color: #444;
+      border: 1px solid #c2c7d0;
+      border-right: 2px solid #989ea8;
+      font-size: 10px;
+      text-align: center;
+      font-weight: normal;
+      box-sizing: border-box;
+      position: sticky;
+      z-index: 15;
+    }
+
+    .mxl-corner-hdr {
+      height: 20px;
+      line-height: 18px;
+      border-bottom: 2px solid #989ea8;
+      z-index: 20;
+    }
+
+    .mxl-row-hdr {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 20px;
+    }
+
+    .mxl-sheet.has-groups .mxl-corner-hdr,
+    .mxl-sheet.has-groups .mxl-row-hdr {
+      left: 0;
+    }
+
+    .mxl-sheet.no-groups .mxl-corner-hdr,
+    .mxl-sheet.no-groups .mxl-row-hdr {
+      left: 0;
+    }
+
+    .mxl-colhdr-cells,
+    .mxl-row-cells {
+      flex: 0 0 auto;
+      min-width: 0;
+      overflow: hidden;
+      background: var(--sheet-bg);
+    }
+
+    .mxl-colhdr-cells {
+      display: flex;
+      flex-direction: row;
+      height: 20px;
+      align-items: stretch;
+    }
+
+    .mxl-colhdr-inner {
+      display: flex;
+      flex-direction: row;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    .mxl-col-hdr {
+      background: var(--hdr-bg);
+      color: #444;
+      border: 1px solid #c2c7d0;
+      border-bottom: 2px solid #989ea8;
+      border-left: none;
+      font-size: 10px;
+      text-align: center;
+      line-height: 18px;
+      box-sizing: border-box;
+      flex: 0 0 auto;
+    }
+
+    .mxl-col-hdr:first-child {
+      border-left: 1px solid #c2c7d0;
+    }
+
+    table.mxl-row-table {
+      border-collapse: collapse;
+      table-layout: fixed;
+      background: var(--sheet-bg);
+      border-spacing: 0;
+    }
+
+    table.mxl-row-table tr {
+      height: auto;
+    }
+
+    table.mxl-row-table td {
+      border: 1px solid var(--grid-line);
+      padding: 1px 3px;
+      vertical-align: bottom;
+      overflow: hidden;
+      max-width: 0;
+      font-size: 11px;
+      line-height: 1.15;
+      box-sizing: border-box;
+      position: relative;
+      cursor: cell;
+      background: var(--sheet-bg);
+    }
+
+    table.mxl-row-table .mxl-cell-text {
+      min-width: 0;
+    }
+
+    table.mxl-row-table .mxl-cell-text[style*="white-space:normal"] {
+      word-break: break-word;
+    }
+
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 48px 24px;
+      color: #555;
+      font-size: 13px;
+    }
+
+    .loading::before {
+      content: '';
+      width: 18px;
+      height: 18px;
+      border: 2px solid #b7bcc4;
+      border-top-color: #2f78c4;
+      border-radius: 50%;
+      animation: mxl-spin .8s linear infinite;
+    }
+
+    @keyframes mxl-spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="errbox" class="err" style="display:none"></div>
+  <div id="loading" class="loading" style="display:none">Загрузка…</div>
+  <div id="app-root" class="app-root">
+    <div id="stage"></div>
+    <aside id="cell-props" class="mxl-props-panel hidden" aria-label="Свойства ячейки"></aside>
+  </div>
+  <script type="module" src="__MXL_APP_SCRIPT__"></script>
+</body>
+
+</html>

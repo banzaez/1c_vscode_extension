@@ -1,0 +1,196 @@
+{
+  "name": "1c-form-viewer",
+  "displayName": "1C Managed Form Viewer",
+  "description": "Визуализатор управляемых форм 1С (Form.xml)",
+  "version": "0.2.0",
+  "publisher": "local",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:1c-form-viewer.openPreview",
+    "workspaceContains:**/*.xml",
+    "workspaceContains:**/form.data",
+    "workspaceContains:**/*.bsl",
+    "onLanguage:bsl"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "1c-form-viewer.openPreview",
+        "title": "1С: Показать форму / макет",
+        "category": "1C Form Viewer",
+        "icon": "$(layout-sidebar-right-off)"
+      },
+      {
+        "command": "1c-form-viewer.openFormPreview",
+        "title": "1С: Показать форму",
+        "category": "1C Form Viewer"
+      },
+      {
+        "command": "1c-form-viewer.openFormFromSidebar",
+        "title": "Открыть форму",
+        "category": "1C Form Viewer"
+      },
+      {
+        "command": "1c-form-viewer.refreshProjectForms",
+        "title": "Обновить список",
+        "category": "1C Form Viewer",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "1c-form-viewer.toggleCodeForm",
+        "title": "1С: Переключить Код / Форму",
+        "category": "1C Form Viewer",
+        "icon": "$(arrow-both)"
+      },
+      {
+        "command": "1c-form-viewer.filterProjectForms",
+        "title": "Фильтровать список",
+        "category": "1C Form Viewer",
+        "icon": "$(search)"
+      },
+      {
+        "command": "1c-form-viewer.clearProjectFormsFilter",
+        "title": "Очистить фильтр",
+        "category": "1C Form Viewer",
+        "icon": "$(clear-all)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "1c-form-viewer-sidebar",
+          "title": "1С: Формы",
+          "icon": "resources/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "1c-form-viewer-sidebar": [
+        {
+          "id": "1c-form-viewer-project-forms",
+          "name": "Формы и макеты проекта",
+          "type": "tree"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "1c-form-viewer-project-forms",
+        "contents": "В рабочей области не найдено форм 1С или табличных макетов.\n[Обновить список](command:1c-form-viewer.refreshProjectForms)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "1c-form-viewer.filterProjectForms",
+          "when": "view == 1c-form-viewer-project-forms",
+          "group": "navigation@1"
+        },
+        {
+          "command": "1c-form-viewer.clearProjectFormsFilter",
+          "when": "view == 1c-form-viewer-project-forms",
+          "group": "navigation@2"
+        },
+        {
+          "command": "1c-form-viewer.refreshProjectForms",
+          "when": "view == 1c-form-viewer-project-forms",
+          "group": "navigation@3"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "1c-form-viewer.openPreview",
+          "when": "resourceExtname == .xml",
+          "group": "navigation"
+        },
+        {
+          "command": "1c-form-viewer.toggleCodeForm",
+          "when": "resourceExtname == .xml || resourceExtname == .bsl",
+          "group": "navigation"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "1c-form-viewer.openPreview",
+          "group": "navigation"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "1c-form-viewer.openPreview",
+        "key": "ctrl+alt+f",
+        "mac": "cmd+alt+f",
+        "when": "editorLangId == xml"
+      }
+    ],
+    "iconThemes": [
+      {
+        "id": "1c-project-icons",
+        "label": "1C Project Icons",
+        "path": "./resources/explorer/theme.json"
+      }
+    ],
+    "languages": [
+      {
+        "id": "bsl",
+        "extensions": [
+          ".bsl",
+          ".os"
+        ],
+        "aliases": [
+          "1C Enterprise (BSL)",
+          "BSL"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "bsl",
+        "scopeName": "source.bsl",
+        "path": "./syntaxes/bsl.tmLanguage.json"
+      }
+    ],
+    "customEditors": [
+      {
+        "viewType": "1c-form-viewer.previewEditor",
+        "displayName": "1C Form Viewer Preview",
+        "selector": [
+          {
+            "filenamePattern": "**/form.xml"
+          },
+          {
+            "filenamePattern": "**/*.mxl"
+          }
+        ],
+        "priority": "option"
+      }
+    ],
+    "semanticTokenScopes": [
+      {
+        "language": "bsl",
+        "scopes": {
+          "parameter": ["variable.parameter.bsl"],
+          "parameter.declaration": ["variable.parameter.bsl", "entity.name.bsl"],
+          "variable": ["variable.other.local.bsl"],
+          "variable.declaration": ["variable.other.declared.bsl"]
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "test:mxl": "node scripts/test-mxl.mjs",
+    "bump-build": "./bump-and-build.sh"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "jsdom": "^29.1.1"
+  }
+}
