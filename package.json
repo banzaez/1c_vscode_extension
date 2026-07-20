@@ -2,7 +2,7 @@
   "name": "1c-form-viewer",
   "displayName": "1C Managed Form Viewer",
   "description": "Визуализатор управляемых форм 1С (Form.xml)",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "publisher": "local",
   "engines": {
     "vscode": "^1.80.0"
@@ -177,10 +177,19 @@
       {
         "language": "bsl",
         "scopes": {
-          "parameter": ["variable.parameter.bsl"],
-          "parameter.declaration": ["variable.parameter.bsl", "entity.name.bsl"],
-          "variable": ["variable.other.local.bsl"],
-          "variable.declaration": ["variable.other.declared.bsl"]
+          "parameter": [
+            "variable.parameter.bsl"
+          ],
+          "parameter.declaration": [
+            "variable.parameter.bsl",
+            "entity.name.bsl"
+          ],
+          "variable": [
+            "variable.other.local.bsl"
+          ],
+          "variable.declaration": [
+            "variable.other.declared.bsl"
+          ]
         }
       }
     ]

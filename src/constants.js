@@ -21,6 +21,7 @@ const ITEM_META = {
   'отчеты':                      { icon: 'Report.png' },
   'report':                      { ru: 'Отчет',                        badge: 'ОТ', icon: 'Report.png' },
   'отчет':                       { icon: 'Report.png' },
+  'мдотчеты':                    { icon: 'Report.png' },
   // ── Перечисления ───────────────────────────────────────────────────────────
   'enums':                       { ru: 'Перечисления',                 badge: 'ПР', icon: 'Enum.png' },
   'перечисления':                { icon: 'Enum.png' },
@@ -121,6 +122,7 @@ const ITEM_META = {
   // ── HTTP-сервисы ───────────────────────────────────────────────────────────
   'httpservices':                { ru: 'HTTP-сервисы',                 badge: 'HT', icon: 'folder-httpservices.svg' },
   'httpservice':                 { ru: 'HTTP-сервис',                  badge: 'HT', icon: 'folder-httpservices.svg' },
+  'мдhtml':                      { icon: 'folder-httpservices.svg' },
   // ── Web-сервисы ────────────────────────────────────────────────────────────
   'webservices':                 { ru: 'Web-сервисы',                  badge: 'WS', icon: 'folder-webservices.svg' },
   'webservice':                  { ru: 'Web-сервис',                   badge: 'WS', icon: 'folder-webservices.svg' },
@@ -153,6 +155,7 @@ const ITEM_META = {
   'styleitem':                   { ru: 'Элемент стиля',                badge: 'СТ', icon: 'DataCompositionConditionalAppearance.png' },
   'styles':                      { ru: 'Стили',                        badge: 'СТ', icon: 'DataCompositionConditionalAppearance.png' },
   'style':                       { ru: 'Стиль',                        badge: 'СТ', icon: 'DataCompositionConditionalAppearance.png' },
+  'мдбланки':                    { icon: 'DataCompositionConditionalAppearance.png' },
   // ── XDTO-пакеты ────────────────────────────────────────────────────────────
   'xdtopackages':                { ru: 'XDTO-пакеты',                  badge: 'XD', icon: 'Dendrogram.png' },
   'xdtopackage':                 { ru: 'XDTO-пакет',                   badge: 'XD', icon: 'Dendrogram.png' },

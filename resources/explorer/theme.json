@@ -99,6 +99,8 @@
     "constant": "folder_constants",
     "dataprocessors": "folder_processors", // Обработки
     "dataprocessor": "folder_processors",
+    "обработки": "folder_processors",
+    "обработка": "folder_processors",
     "documentjournals": "folder_journals", // Журналы документов
     "documentjournal": "folder_journals",
     "documentnumerators": "folder_numerators", // Нумераторы документов
@@ -119,6 +121,7 @@
     "functionaloption": "folder_functionaloptions",
     "httpservices": "folder_httpservices", // HTTP-сервисы
     "httpservice": "folder_httpservices",
+    "мдhtml": "folder_httpservices",
     "informationregisters": "folder_inf_registers", // Регистры сведений
     "informationregister": "folder_inf_registers",
     "interfaces": "folder_commandgroups", // Интерфейсы
@@ -127,6 +130,7 @@
     "language": "folder_languages",
     "reports": "folder_reports", // Отчеты
     "report": "folder_reports",
+    "мдотчеты": "folder_reports",
     "roles": "folder_roles", // Роли
     "role": "folder_roles",
     "scheduledjobs": "folder_scheduledjobs", // Регламентные задания
@@ -139,6 +143,7 @@
     "styleitem": "folder_styles",
     "styles": "folder_styles", // Стили
     "style": "folder_styles",
+    "мдбланки": "folder_styles",
     "subsystems": "folder_subsystems", // Subsystems / Подсистемы
     "subsystem": "folder_subsystems",
     "webservices": "folder_webservices", // Web-сервисы
@@ -195,6 +200,8 @@
     "constant": "folder_constants",
     "dataprocessors": "folder_processors", // Обработки
     "dataprocessor": "folder_processors",
+    "обработки": "folder_processors",
+    "обработка": "folder_processors",
     "documentjournals": "folder_journals", // Журналы документов
     "documentjournal": "folder_journals",
     "documentnumerators": "folder_numerators", // Нумераторы документов
@@ -215,6 +222,7 @@
     "functionaloption": "folder_functionaloptions",
     "httpservices": "folder_httpservices", // HTTP-сервисы
     "httpservice": "folder_httpservices",
+    "мдhtml": "folder_httpservices",
     "informationregisters": "folder_inf_registers", // Регистры сведений
     "informationregister": "folder_inf_registers",
     "interfaces": "folder_commandgroups", // Интерфейсы
@@ -223,6 +231,7 @@
     "language": "folder_languages",
     "reports": "folder_reports", // Отчеты
     "report": "folder_reports",
+    "мдотчеты": "folder_reports",
     "roles": "folder_roles", // Роли
     "role": "folder_roles",
     "scheduledjobs": "folder_scheduledjobs", // Регламентные задания
@@ -235,6 +244,7 @@
     "styleitem": "folder_styles",
     "styles": "folder_styles", // Стили
     "style": "folder_styles",
+    "мдбланки": "folder_styles",
     "subsystems": "folder_subsystems", // Subsystems / Подсистемы
     "subsystem": "folder_subsystems",
     "webservices": "folder_webservices", // Web-сервисы
